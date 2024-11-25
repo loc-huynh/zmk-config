@@ -1,0 +1,210 @@
+/ {
+  macros {
+    /*
+      Temporarily switches to a layer (&mo) while a modifier is held. This is
+      an implementation of QMK's `LM()` using ZMK's parameterized macros.
+
+      Params:
+        1. Layer to switch to
+        2. Modifier to press while layer is active
+
+      Example:
+        `&lm L1 LSHIFT`
+     */
+    /omit-if-no-ref/ lm: lm {
+      wait-ms = <0>;
+      tap-ms = <0>;
+      compatible = "zmk,behavior-macro-two-param";
+      #binding-cells = <2>;
+      bindings = <&macro_param_1to1>,
+        <&macro_press &mo MACRO_PLACEHOLDER>,
+        <&macro_param_2to1>,
+        <&macro_press &kp MACRO_PLACEHOLDER>,
+        <&macro_pause_for_release>,
+        <&macro_param_2to1>,
+        <&macro_release &kp MACRO_PLACEHOLDER>,
+        <&macro_param_1to1>,
+        <&macro_release &mo MACRO_PLACEHOLDER>;
+    };
+
+    /*
+      Practically identical to &sl, except it triggers a `K_CANCEL` right before to clear
+      any active smart layers. This prevents nested/stacked layer activation when needed.
+
+      Params:
+        1. Layer to switch to
+
+      Example:
+        `&csl L1`
+     */
+    /omit-if-no-ref/ csl: clear_sl {
+      wait-ms = <0>;
+      tap-ms = <0>;
+      compatible = "zmk,behavior-macro-one-param";
+      #binding-cells = <1>;
+      bindings = <&macro_tap &kp K_CANCEL>,
+        <&macro_param_1to1>,
+        <&macro_press &sl MACRO_PLACEHOLDER>,
+        <&macro_pause_for_release>,
+        <&macro_param_1to1>,
+        <&macro_release &sl MACRO_PLACEHOLDER>;
+    };
+
+    /*
+      Practically identical to &mo, except it triggers a `K_CANCEL` right before to clear
+      any active smart layers. This prevents nested/stacked layer activation when needed.
+      It's also useful to maintain more consistent expectations when holding a cancel/exit layer
+      key from a smart layer.
+
+      Params:
+        1. Layer to switch to
+
+      Example:
+        `&cmo L1`
+     */
+    /omit-if-no-ref/ cmo: clear_mo {
+      wait-ms = <0>;
+      tap-ms = <0>;
+      compatible = "zmk,behavior-macro-one-param";
+      #binding-cells = <1>;
+      bindings = <&macro_tap &kp K_CANCEL>,
+        <&macro_param_1to1>,
+        <&macro_press &mo MACRO_PLACEHOLDER>,
+        <&macro_pause_for_release>,
+        <&macro_param_1to1>,
+        <&macro_release &mo MACRO_PLACEHOLDER>;
+    };
+
+    // achxi's custom macro
+    /omit-if-no-ref/ tmux_num: tmux_num {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      = <&macro_press &kp LC>
+      , <&macro_tap &kp K>
+      , <&macro_release &kp LC>
+      , <&sl _NUM>
+      ;
+    };
+
+    /omit-if-no-ref/ ctrl_w: ctrl_w {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      = <&macro_press &kp LC>
+      , <&macro_tap &kp W>
+      , <&macro_release &kp LC>
+      ;
+    };
+
+    /omit-if-no-ref/ vim_save: vim_save {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      = <&macro_tap &kp COLON>
+      , <&macro_tap &kp W>
+      , <&macro_tap &kp ENTER>
+      ;
+    };
+
+    /omit-if-no-ref/ vim_swap: vim_swap_window {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      = <&macro_press &kp LC>
+      , <&macro_tap &kp W>
+      , <&macro_release &kp LC>
+      , <&macro_wait_time 100>
+      , <&macro_press &kp LC>
+      , <&macro_tap &kp R>
+      , <&macro_release &kp LC>
+      ;
+    };
+
+    /omit-if-no-ref/ up_dir: up_dir {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp DOT>
+      , <&macro_tap &kp DOT>
+      , <&macro_tap &kp SLASH>
+      ;
+    };
+
+    /omit-if-no-ref/ fat_right: fat_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp EQUAL>
+      , <&macro_tap &kp GT>
+      ;
+    };
+
+    /omit-if-no-ref/ thin_right: thin_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp MINUS>
+      , <&macro_tap &kp GT>
+      ;
+    };
+
+    /omit-if-no-ref/ del_fw: delete_forward_word {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp WORD_R>
+      , <&macro_tap &kp DEL_WORD>
+      ;
+    };
+
+    /omit-if-no-ref/ ter_del_fw: terminal_delete_forward_word {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp TER_R>
+      , <&macro_tap &kp TER_DEL>
+      ;
+    };
+
+    /omit-if-no-ref/ smart_copy: smart_copy {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &kp COPY>
+      , <&macro_tap &to _COLEMAK_DH>
+      ;
+    };
+
+    /omit-if-no-ref/ off_mouse: off_mouse {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings 
+      , <&macro_tap &tog _MOUSE>
+      , <&macro_tap &tog _MOUSE_REV>
+      ;
+    };
+
+    /omit-if-no-ref/ tmux_p: tmux_prefix {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <1>;
+      bindings = <&macro_press &kp LCTRL>,
+        , <&macro_tap &kp K>
+        , <&macro_release &kp LCTRL>
+        , <&macro_wait_time 100>
+        , <&macro_param_1to1>
+        , <&macro_release &kp MACRO_PLACEHOLDER>
+        ;
+    };
+
+    /omit-if-no-ref/ code_snip: code_snippet {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&macro_tap &kp GRAVE>
+        , <&macro_tap &kp GRAVE>
+        , <&macro_tap &kp GRAVE>
+        ;
+    };
+
+  };
+};

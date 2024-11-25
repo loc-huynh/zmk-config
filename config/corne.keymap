@@ -13,6 +13,114 @@
 #define U_MS_L &mmv MOVE_LEFT
 #define U_MS_R &mmv MOVE_RIGHT
 
+// Layers
+#define _COLEMAK_DH 0
+#define _QWERTY 1
+#define _SYSTEM 2
+#define _PREFIX_C_K 3
+#define _NUM 4
+#define _SYM 5
+#define _MOUSE 6
+#define _MOUSE_REV 7
+#define _EXTEND 8
+#define _NAV 9
+#define _VIM 10
+#define _SUB_NAV 11
+#define _LED 12
+#define _HRM 13
+// #define _TAB 13
+
+// Meh key
+#define MEH LS(LC(LALT))
+
+#define TMUX_PRE LC(K)
+
+#define WORD_L LALT(LEFT)
+#define WORD_R LALT(RIGHT)
+
+#define TER_L LALT(LEFT)
+#define TER_R LALT(RIGHT)
+
+#define TER_F LCTRL(A)
+#define TER_E LCTRL(E) 
+
+#define TER_DEL LCTRL(W) 
+#define TER_C_F LCTRL(U) 
+#define TER_C_E LCTRL(K) 
+
+#define FWD LG(RBKT)
+#define BACK LG(LBRC)
+
+#define TAB_L LC(LS(TAB))
+#define TAB_R LC(TAB)
+
+#define DEL_WORD LA(BSPC)
+#define F_LINE LG(LEFT)
+#define L_LINE LG(RIGHT)
+
+#define F_LINE_SEL LG(LS(LEFT))
+#define L_LINE_SEL LG(LS(RIGHT))
+
+#define SEARCH LG(F)
+
+#define CLOSE_W LG(W)
+
+#define CAP_FULL_IMG LG(LS(N3))        // Capture full screen
+#define CAP_IMG LG(LS(N4))        // Capture portion of screen
+#define CAP_MOV LG(LS(N5))        // Capture portion of screen
+
+#define COPY LG(C)
+#define PASTE LG(V)
+#define CUT LG(X)
+#define UNDO LG(Z)
+
+#define HYPER LG(LA(LC(LSHIFT)))
+#define ZOOM_MAC LG(LA(N8))
+
+#define OPEN_APP LA((SPACE))
+
+#define NAV_L LC(LEFT)
+#define NAV_R LC(RIGHT)
+#define NAV_U LC(UP)
+
+#define DWORD LC(W)
+
+#define SW_INST LG(GRAVE)
+#define CLR_TERM LC(L)
+#define SFT_TAB LS(TAB)
+#define FRC_CLOSE LG(LA(ESC))
+
+#define CANCEL_MOD F22
+
+// Behaviors Constants
+#define TAPPING_TERM_MS 280
+#define QUICK_TAP_MS 175
+#define REQUIRE_PRIOR_IDLE_MS 150
+
+// Combos Constants
+#define COMBO_TERM_DEFAULT 30
+#define COMBO_QUICK_TAP_MS 100
+
+    /*
+      KEY POSITIONS
+      ╭────────────────────────╮ ╭─────╮  ╭─────────────────────────╮
+      │ 0   1   2   3   4   5  │ │ 6   │  │ 7   8   9   10  11  12  │
+      │ 13  14  15  16  17  18 │ │ 19  │  │ 20  21  22  23  24  25  │
+      │ 26  27  28  29  30  31 │ │ 32  │  │ 33  34  35  36  37  38  │
+      ╰───────────╮ 39  40  41 │ │ 42  │  │ 43  44  45 ╭────────────╯
+                  ╰────────────╯ │ 46  │  ╰────────────╯
+                                 ╰─────╯ 
+    */
+
+// Key positions per hand
+#define KEYS_L 0 1 2 3 4 5 13 14 15 16 17 18 26 27 28 29 30 31
+#define KEYS_R 7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38
+#define THUMBS 39 40 41 43 44 45
+
+// #include "behaviors.dtsi"
+#include "macros.dtsi"
+#include "combos.dtsi"
+
 / {
     behaviors {
         td0: td0 {
@@ -54,7 +162,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "QWERTY";
+            display-name = "base";
 
             // --------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |                ↑    |  Y  |  U   |  I  |  O  |  P  | BKSP |      &kp UP_ARROW 
@@ -64,19 +172,37 @@
             //                                                      enter
 
             bindings = <
-&kp TAB    &kp Q  &kp W      &kp E     &kp R  &kp T          &kp UP_ARROW     &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S      &kp D     &kp F  &kp G          &kp DOWN_ARROW   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X      &kp C     &kp V  &kp B          &kp LEFT_ARROW   &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                  &kp SPACE  &kp LGUI  &mo 1  &lt 3 SPACE    &kp RIGHT_ARROW  &lt 3 ENTER  &mo 2  &kp RALT
-                                                             &kp ENTER
-            >;
 
-            label = "QWERTY";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &mo _SYSTEM &kp Q     &kp W           &kp F           &kp P           &kp B              &mmv MOVE_UP        &kp J        &kp L        &kp U        &kp Y         &kp SQT     &mo _SYSTEM 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &kp LGUI     &hrml LCTRL A &hrml LSHIFT R &hrml LALT S    &hrml LCMD T    &hrml MEH G     &mmv MOVE_DOWN      &hrmr MEH M  &hrmr LCMD N &hrmr LALT E &hrmr LSHIFT I &hrmr LCTRL O &kp LCTRL 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &kp LALT    &kp Z     &kp X           &kp C         &hlt _PREFIX_C_K D   &kp V            &mmv MOVE_LEFT      &kp K        &kp H        &comm_uds    &dot_mns       &slh_bsl    &kp LSHIFT 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB    &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+            >;
+// default keys 
+// &kp TAB    &kp Q  &kp W      &kp E     &kp R  &kp T          &kp UP_ARROW     &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
+// &td0       &kp A  &kp S      &kp D     &kp F  &kp G          &kp DOWN_ARROW   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+// &kp LCTRL  &kp Z  &kp X      &kp C     &kp V  &kp B          &kp LEFT_ARROW   &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+//                   &kp SPACE  &kp LGUI  &mo 1  &lt 3 SPACE    &kp RIGHT_ARROW  &lt 3 ENTER  &mo 2  &kp RALT
+//                                                              &kp ENTER
+            label = "base";
+            // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+           sensor-bindings = <&scroll_encoder>; 
         };
 
-        lower_layer {
-            display-name = "NUMBER";
+        qwerty_layer {
+            display-name = "qwerty";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
@@ -85,50 +211,463 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5             &mmv MOVE_UP     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &mmv MOVE_DOWN   &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF    &mmv MOVE_LEFT   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                         &kp C_MUTE      &trans        &trans        &trans             &mmv MOVE_RIGHT  &kp INS          &kp DEL          &trans
-                                                                                        &mkp LCLK
+
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &mo _SYSTEM &kp Q     &kp W           &kp E           &kp R           &kp T             &mmv MOVE_UP        &kp Y        &kp U        &kp I        &kp O         &kp P         &mo _SYSTEM 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans     &hrml LCTRL A &hrml LSHIFT S   &hrml LALT D &hrml LCMD F    &hrml MEH G       &mmv MOVE_DOWN      &hrmr MEH H  &hrmr LCMD J &hrmr LALT K &hrmr LSHIFT L &hrmr LCTRL SEMI &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &kp Z     &kp X           &kp C        &hlt _PREFIX_C_K V &kp B             &mmv MOVE_LEFT      &kp N        &kp M        &comm_uds    &dot_mns       &slh_bsl    &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB     &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK
+                                                                                            ╰───────────────╯
             >;
 
-            label = "NUMBER";
+// default keys 
+// &trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5             &mmv MOVE_UP     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
+// &trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &mmv MOVE_DOWN   &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
+// &trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF    &mmv MOVE_LEFT   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
+//                          &kp C_MUTE      &trans        &trans        &trans             &mmv MOVE_RIGHT  &kp INS          &kp DEL          &trans
+//                                                                                         &mkp LCLK
+            label = "qwerty";
             sensor-bindings = <&scroll_encoder>;
         };
 
-        raise_layer {
-            display-name = "SYMBOL";
+        system_layer {
+            display-name = "system";
+            bindings = <
+
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &none     &none           &none           &none           &none              &mmv MOVE_UP        &none        &none        &none        &none         &none        &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &none       &none     &none           &none           &none           &none              &mmv MOVE_DOWN      &none        &none        &none        &none         &none        &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &none       &none     &none           &none           &none           &none              &mmv MOVE_LEFT      &none        &none        &none        &none         &none        &none
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &none           &hold_reset     &hold_boot         &mmv MOVE_RIGHT     &hold_boot   &hold_reset  &none 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK
+                                                                                            ╰───────────────╯
+
+            >;
+// default keys
+// &trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5             &mmv MOVE_UP     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
+// &trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &mmv MOVE_DOWN   &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
+// &trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF    &mmv MOVE_LEFT   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
+//                          &kp C_MUTE      &trans        &trans        &trans             &mmv MOVE_RIGHT  &kp INS          &kp DEL          &trans
+//                                                                                         &mkp LCLK
+            label = "system";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        led_layer {
+            display-name = "led";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [/*   |   */]  |  \  |  `   |
             // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
+            //
+/* VIM
+ * |   -  |DESC_HUE  |   INC_HUE  |  DESC_SAT  |   INC_SAT  |   -  |   -  |   DYN_PLAY1  |   DYN_PLAY2  |   -    |   -  |   -  |
+ * |------+----------+------------+------------+------------+------+------+--------------+--------------+--------+------+------|
+ * |   -  |MOD_REVESE|   TOGG_RGB | MOD_CYCLE  |   -        |   -  |   -  |   REC_1      |   REC_2      |STOP_REC|   -  |   -  |
+ * |------+----------+------------+------------+------------+------+------+--------------+--------------+--------+------+------|
+ * |   -  | DESC_BRI |   INC_BRI  |   INC_EFT  |  DESC_EFT  |   -  |   -  |      -       |       -          -    |   -  |   -  |
+ * |------+----------+------------+------------+------------+------+------+--------------+--------------+--------+------+------|
+ * |   -  |  -       |  -         | -          |     -      |  -   |  -   |      -       |      -       |   -    |   -  |   -  |
+ * |------+----------+------------+------------+------------+------+------+--------------+--------------+--------+------+------|
+ */
 
+// [_VIM] = LAYOUT_planck_grid(
+//     _______,  RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, _______, _______, DM_PLY1, DM_PLY2, _______, _______, _______,
+//     _______,  RGB_RMOD, RGB_TOG, RGB_MOD, _______, _______, _______, DM_REC1, DM_REC2, DM_RSTP, _______, _______,
+//     _______,  RGB_VAD, RGB_VAI, RGB_SPD, RGB_SPI, _______, _______, _______, _______, _______, _______, _______,
+//     _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+// ),
+//
             bindings = <
-&trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT    &mmv MOVE_UP     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4     &mmv MOVE_DOWN   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5     &mmv MOVE_LEFT   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                      &trans        &trans     &trans     &kp SPACE    &mmv MOVE_RIGHT  &kp RET    &trans     &trans
-                                                                       &mkp LCLK
-            >;
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &none               &mmv MOVE_UP        &none        &bt BT_PRV &bt BT_NXT   &bt BT_CLR &bt BT_CLR_ALL       &none 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans &rgb_ug RGB_EFF &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_ON &rgb_ug RGB_OFF    &mmv MOVE_DOWN      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4     &trans
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans        &rgb_ug RGB_SPD &rgb_ug RGB_SPI     &mmv MOVE_LEFT      &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4   &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &tog _LED       &trans          &trans             &mmv MOVE_RIGHT      &trans      &trans       &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK
+                                                                                            ╰───────────────╯
 
-            label = "SYMBOL";
+            >;
+// default keys
+// &trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT    &mmv MOVE_UP     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
+// &trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4     &mmv MOVE_DOWN   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
+// &trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5     &mmv MOVE_LEFT   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
+//                       &trans        &trans     &trans     &kp SPACE    &mmv MOVE_RIGHT  &kp RET    &trans     &trans
+//                                                                        &mkp LCLK
+
+            label = "led";
             sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_3 {
-            display-name = "Fn";
+        num_layer {
+            display-name = "number";
             bindings = <
-&trans  &kp F1      &kp F2      &kp F3       &kp F4     &kp F5      &mmv MOVE_UP     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans  &trans      &mkp LCLK   &mkp MCLK    &mkp RCLK  &mkp MB4    &mmv MOVE_DOWN   &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans  &sys_reset  &trans      &bootloader  &trans     &mkp MB5    &mmv MOVE_LEFT   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                    &kp C_MUTE  &trans       &trans     &trans      &mmv MOVE_RIGHT  &trans       &trans     &trans
-                                                                    &mkp LCLK
-            >;
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮ ╭───────────────╮ ╭─────────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │ │6              │ │7                │8           │9           │10           │11          │12             │
+    &none       &kp F1     &kp F2           &kp F3           &kp F4           &kp F5        &mmv MOVE_UP      &kp KP_MULTIPLY   &kp N7        &kp N8        &kp N9         &kp KP_DIVIDE        &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤ ├───────────────┤ ├─────────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │  19               │20               │21          │22          │23           │24          │25             │
+    &trans  &hrml LCTRL F6 &hrml LSHIFT DOT &hrml LALT COMMA &hrml_l LCMD _NUM &hrml MEH F7  &mmv MOVE_DOWN  &hrmr MEH KP_PLUS &hrmr LCMD N1 &hrmr LALT N2 &hrmr LSHIFT N3 &hrmr LCTRL KP_MINUS &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤ ├───────────────┤ ├─────────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │  32               │33               │34          │35          │36           │37          │38             │
+    &trans      &kp F12     &kp F9           &kp F10       &kp F11        &kp F8            &mmv MOVE_LEFT    &kp BSPC          &kp N4        &kp N5      &kp N6       &kp KP_EQUAL    &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤ ├───────────────┤ ├─────────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │  42               │43               │44          │45          │
+                                          &hml_ttl _NAV _NUM  &hlt _HRM SPACE   &trans      &mmv MOVE_RIGHT   &hl_tl _HRM _SYM  &kp N0       &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯ ├───────────────┤ ╰─────────────────┴────────────┴────────────╯
+//                                                                                          46
+                                                                                            &mkp LCLK 
+                                                                                          ╰───────────────╯
 
-            label = "FN";
+            >;
+// default keys
+// &trans  &kp F1      &kp F2      &kp F3       &kp F4     &kp F5      &mmv MOVE_UP     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
+// &trans  &trans      &mkp LCLK   &mkp MCLK    &mkp RCLK  &mkp MB4    &mmv MOVE_DOWN   &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
+// &trans  &sys_reset  &trans      &bootloader  &trans     &mkp MB5    &mmv MOVE_LEFT   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
+//                     &kp C_MUTE  &trans       &trans     &trans      &mmv MOVE_RIGHT  &trans       &trans     &trans
+//                                                                     &mkp LCLK
+
+            label = "number";
             sensor-bindings = <&scroll_encoder>;
         };
+
+        sym_layer {
+            display-name = "symbol";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &kp GRAVE     &kp LT           &kp GT           &kp QMARK  &up_dir           &mmv MOVE_UP        &kp PIPE      &kp LBRC    &kp PRCNT    &kp RBRC      &kp UNDER      &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans &hrml LCTRL EXCL &hrml LSHIFT MINUS &hrml LALT PLUS &hrml LCMD EQUAL &hrml MEH SEMI &mmv MOVE_DOWN  &hrmr MEH AMPS &hrmr LCMD LPAR &hrmr LALT COLON &hrmr LSHIFT RPAR &hrmr LCTRL BSLH &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &kp KP_DOT &kp SLASH      &kp STAR        &kp CARET       &kp AT           &mmv MOVE_LEFT        &kp TILDE    &kp LBKT     &kp DLLR     &kp RBKT      &kp HASH      &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &hml_ttl _NAV _SYM &hlt _HRM SPACE &mo _HRM       &mmv MOVE_RIGHT      &trans      &smart_shift   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK
+                                                                                            ╰───────────────╯
+
+            >;
+            label = "symbol";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_PREFIX_C_K] = LAYOUT_planck_grid(
+//         KC_Q,     KC_W,    KC_F,    KC_P,    KC_B,    _______, _______,  KC_J,       KC_L,    KC_U,    KC_Y,    KC_QUOT,
+//         KC_A,     KC_R,    KC_S,    KC_T,    KC_G,    _______, _______,  KC_M,       KC_N,    KC_E,    KC_I,    KC_O,
+//         KC_Z,     KC_X,    KC_C,    KC_D,    KC_V,    _______, _______,  KC_K,       KC_H,    KC_COMM, KC_DOT,  KC_SLASH,
+//         _______,  _______, _______, _______, _______, _______, _______,_______,      _______, _______, _______,  _______
+// ),
+//
+//
+        _prefix_c_k_layer {
+            display-name = "prefix_c_k";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &tmux_p Q &tmux_p W       &tmux_p F      &tmux_p P        &tmux_p B          &mmv MOVE_UP        &tmux_p J    &tmux_p L    &tmux_p U    &tmux_p Y    &tmux_p SQT       &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans     &tmux_p A  &tmux_p R       &tmux_p S      &tmux_p T        &tmux_p G          &mmv MOVE_DOWN      &tmux_p M    &tmux_p N    &tmux_p E    &tmux_p I    &tmux_p O        &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans     &tmux_p Z  &tmux_p X       &tmux_p C      &tmux_p D        &tmux_p V          &mmv MOVE_LEFT      &tmux_p K    &tmux_p H    &tmux_p COMMA &tmux_p DOT &tmux_p SLASH   &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &hml_ttl _NAV _PREFIX_C_K &trans &trans            &mmv MOVE_RIGHT     &trans       &trans       &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+
+            >;
+            label = "prefix_c_k";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_MOUSE] = LAYOUT_planck_grid(
+//     TO(_COLEMAK_DH), KC_MSTP, KC_WH_U, KC_WH_D,   KC_MUTE,    _______, _______,  KC_MPLY,    KC_WH_L,    KC_MS_U,   KC_WH_R,   CAP_IMG,
+//     KC_MPRV,    KC_ACL1,    KC_ACL0,    KC_ACL2,  KC_VOLU,    _______, _______, KC_VOLD,     KC_MS_L,    KC_MS_D,   KC_MS_R,  ZOOM_MAC,
+//     KC_MNXT,    KC_MPLY,    KC_BTN2,    KC_BTN1,  KC_BRIU,    _______, _______, KC_BRID,     KC_BTN1,    KC_BTN2,  TG(_MOUSE_REV),   TURBO,
+//     _______,_______, _______,_______, MO(_HOME_ROW_MOD),    _______, _______, KC_LSFT,   QK_LOCK,    _______,   _______,   _______
+// ),
+
+        mouse_layer {
+            display-name = "mouse";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none  &to _COLEMAK_DH &kp C_STOP     &msc SCRL_DOWN  &msc SCRL_UP    &kp C_MUTE         &kp UP_ARROW        &kp C_PP     &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &kp CAP_IMG     &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans     &kp C_NEXT  &mkp MB5        &mkp MCLK       &mkp MB4        &kp C_VOL_DN      &kp DOWN_ARROW    &kp C_VOL_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp ZOOM_MAC    &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans    &kp C_PREV     &kp C_PP       &mkp RCLK     &mkp LCLK        &kp C_BRI_DN      &kp LEFT_ARROW      &kp C_BRI_UP  &mkp LCLK    &mkp RCLK    &tog _MOUSE_REV &none     &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &hml_ttl _NAV _MOUSE &mo _HRM    &kp C_PP          &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &kp ENTER
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "mouse";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_MOUSE_REV] = LAYOUT_planck_grid(
+//     KC_MPLY,    KC_WH_L,    KC_MS_U,   KC_WH_R,   CAP_IMG,  _______, _______, KC_MUTE,  KC_WH_D, KC_WH_U, KC_MSTP,  TO(_COLEMAK_DH),
+//     KC_VOLD,     KC_MS_L,    KC_MS_D,   KC_MS_R,  ZOOM_MAC, _______, _______, KC_VOLU,    KC_ACL2,    KC_ACL0,    KC_ACL1,  KC_MPRV,
+//     KC_BRID,     KC_MPLY, KC_BTN2,    KC_BTN1,     TURBO,    _______, _______, KC_BRIU,    KC_BTN1,    KC_BTN2, TG(_MOUSE_REV), KC_MNXT,
+//     _______,_______, _______,_______, MO(_HOME_ROW_MOD),    _______, _______, KC_LSFT,   QK_LOCK,    _______,   _______,   _______
+// ),
+//
+
+        mouse_rev_layer {
+            display-name = "mouse rev";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none     &kp CAP_IMG  &msc SCRL_LEFT   &mmv MOVE_UP   &msc SCRL_RIGHT &kp C_PP          &kp UP_ARROW       &kp C_MUTE   &msc SCRL_DOWN  &msc SCRL_UP &kp C_STOP &to _COLEMAK_DH &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans    &kp ZOOM_MAC  &mmv MOVE_LEFT &mmv MOVE_DOWN  &mmv MOVE_RIGHT &kp C_VOL_DN      &kp DOWN_ARROW     &kp C_VOL_UP  &mkp MB4     &mkp MCLK     &mkp MB5    &kp C_PREV    &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans      &none     &kp C_PP        &mkp RCLK       &mkp LCLK        &kp C_BRI_DN      &kp LEFT_ARROW      &kp C_BRI_UP &mkp LCLK     &mkp RCLK    &tog _MOUSE_REV &kp C_NEXT &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &m_thing _NAV   &mo _HRM        &kp C_PP           &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &kp ENTER
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "mouse rev";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        extend_layer {
+            display-name = "extend";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &trans      &none     &none           &sw_app           &sw_web       &kp C_PREV         &mmv MOVE_UP        &kp C_NEXT   &kp ENTER    &mkp LCLK     &mkp RCLK     &none         &trans
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans      &none     &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_DOWN  &msc SCRL_RIGHT    &mmv MOVE_DOWN      &msc SCRL_LEFT &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans      &none     &none           &kp CLR_TERM     &kp SW_INST    &trans             &mmv MOVE_DOWN      &trans       &kp SW_INST &kp CLR_TERM   &none         &none        &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &kp OPEN_APP     &kp C_MUTE      &kp C_PP            &mmv MOVE_RIGHT     &trans         &smart_shift   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+            >;
+
+            label = "extend";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_HOME_ROW_MOD] = LAYOUT_planck_grid(
+//     KC_HOME,         KC_END,  CANCEL_MOD,TAB_WEB, TAB_APP, _______, _______, KC_TAB,   SW_INST,   CLR_TERM ,  KC_PGDN, KC_PGUP,
+//     OS_CMD,          OS_ALT,   OS_SHFT, OS_CTRL, TG_KEEP_MOD,_______, _______, KC_SPC,  OS_CMD,   OS_ALT,   OS_SHFT, OS_CTRL,
+//     KC_LGUI,         KC_LOPT,  KC_LSFT, KC_LCTL, FRC_CLOSE ,    _______, _______, KC_CAPS,   KC_RCTL,   KC_RSFT,  KC_ROPT, KC_RGUI,
+//     _______,         _______,  _______, _______, _______,    _______, _______, KC_RSFT,  _______, _______, _______, _______
+// ),
+
+    // &td0     &hrml LCTRL A &hrml LSHIFT R &hrml LALT S    &hrml LCMD T    &hrml MEH G        &kp DOWN_ARROW      &hrmr MEH M  &hrmr LCMD N &hrmr LALT E &hrmr LSHIFT I &hrmr LCTRL O  achxi
+        hrm_layer {
+            display-name = "hrm";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &home_end     &kp END     &kp CANCEL_MOD  &sw_web_st      &sw_app_st          &mmv MOVE_UP        &kp TAB      &kp SW_INST  &kp CLR_TERM &pg_d_u       &kp PG_UP     &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans      &sk LCTRL  &sk LSHIFT      &sk LALT        &sk LCMD F      &sk MEH            &mmv MOVE_DOWN      &kp SPACE    &sk LCMD     &sk LALT     &sk LSHIFT    &sk LCTRL    &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &kp LGUI  &kp LALT        &kp LSHIFT      &kp LCTRL       &kp FRC_CLOSE      &mmv MOVE_LEFT      &kp CAPS      &kp RCTRL    &kp RSHIFT    &kp RALT     &kp RGUI    &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &smart_shift    &trans
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "hrm";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_NAV] = LAYOUT_planck_grid(
+//     NO_KEEP_MOD,  CLOSE_W,  MO(_SUB_NAV), SW_ARC,      SW_WIN,       _______, _______,TD(TD_KEY_PRE_TMUX),KC_ENT,KC_TAB,TAB_R, CAP_IMG,
+//     UNDO,     CUT,      COPY,      PASTE,   SEARCH,    _______, _______, KC_LEFT,        KC_DOWN,    KC_UP,  KC_RIGHT,   DWORD,
+//     TG_BPC_POWER,   QK_LOCK,   JIGGLE ,VIM_MOVE, FAT_RIGHT, _______, _______, BACK,   KC_BSPC,   DEL_WORD,  F_LINE,     WORD_L,
+//     _______,  _______,  _______,   _______, _______,      _______,  _______, KC_LSFT,   MO(_HOME_ROW_MOD),   _______,  _______,    _______
+// ),
+
+        nav_layer {
+            display-name = "nav";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none &htk LG(Q) CANCEL_MOD  &kp CLOSE_W  &mo _SUB_NAV    &sw_web       &sw_app          &mmv MOVE_UP        &tog _PREFIX_C_K &kp ENTER &kp TAB        &web_tab    &kp CAP_IMG   &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans  &hrml LCTRL UNDO &hrml LSHIFT CUT &hrml_cy LALT &hrml LCMD PASTE &hrml MEH SEARCH  &mmv MOVE_DOWN      &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp DWORD    &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans     &code_snip &kp SW_INST &hl_togl _LED _LED &mo _VIM         &fat_right         &mmv MOVE_LEFT     &web_nav     &bkspc_del    &kp DEL_WORD  &htk F_LINE_SEL F_LINE &kp WORD_L   &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "nav";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        vim_layer {
+            display-name = "vim";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &none     &none           &none           &none           &none              &mmv MOVE_UP        &none        &trans       &kp ENTER    &mkp LCLK     &mkp RCLK    &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans       &none     &none           &vim_save      &none           &none              &mmv MOVE_DOWN      &kp LC(R)    &kp LC(DOWN)  &kp LC(UP)  &vim_swap      &none      &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &none     &none           &none           &trans          &none              &mmv MOVE_LEFT      &none       &kp LC(O)    &kp LC(N6)    &kp LC(I)    &none       &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans        &vim_save    &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "nav";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_SUB_NAV] = LAYOUT_planck_grid(
+//     ICON_SURPRISE,  DM_REC2,  _______, DM_REC1,  FWD,    _______, _______,       NAV_U,   NAV_L,   NAV_R,  TAB_L,   DF(_COLEMAK_DH),
+//     DM_PLY2,  ICON_HAPPY,  TG_SENTENCE_CASE, DM_RSTP,  DM_PLY1,      _______, _______,       CAP_FULL_IMG,   ICON_SMILE,   TG_SC_MANUAL,  CAP_MOV,   DF(_QWERTY),
+//     UC_PREV,  UC_NEXT,  CG_LNRM, CG_LSWP,  THIN_RIGHT,   _______, _______,       RESET_STATE_KB,   TG_QMK_VIM_MAC,   CM_TOGG,  L_LINE,   WORD_R,
+//     _______,  _______,  _______, _______,  EE_CLR,      _______, _______,       TD(TD_XCASE_CAPWORD),   TD(TD_CONST_CAMEL), _______,  _______,   _______
+// ),
+//
+        sub_nav_layer {
+            display-name = "sub nav";
+            bindings = <
+
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &none     &none           &trans           &none           &none            &mmv MOVE_UP        &kp NAV_U  &kp NAV_L     &kp NAV_R   &kp TAB_L       &tog(_QWERTY) &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans        &none     &none          &none           &none           &none              &mmv MOVE_DOWN    &kp PRINTSCREEN &hmtk 0 TER_DEL &ter_line   &ter_word     &kp SCROLLLOCK &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &none     &none           &none           &none           &thin_right        &mmv MOVE_LEFT      &kp FWD      &htk TER_C_F TER_C_E &del_fw &htk L_LINE_SEL L_LINE &kp WORD_R &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp CAP_MOV &kp CAP_FULL_IMG &kp PAUSE_BREAK 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+                                                                                            ╰───────────────╯
+
+            >;
+
+            label = "sub nav";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+//         tab_layer {
+//             display-name = "tab";
+//             bindings = <
+// // ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// // │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+//     &none      &tog _TAB &tog _TAB       &tog _TAB       &tog _TAB       &tog _TAB          &mmv MOVE_UP        &tog _TAB    &tog _TAB    &tog _TAB    &tog _TAB     &tog _TAB     &none
+// // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// // │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+//     &trans      &tog _TAB &tog _TAB       &kp SFT_TAB     &kp TAB          &tog _TAB         &mmv MOVE_DOWN      &tog _TAB    &kp SFT_TAB  &kp TAB       &kp SFT_TAB  &kp SFT_TAB  &trans 
+// // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+//     &trans      &tog _TAB &tog _TAB       &tog _TAB       &tog _TAB       &tog _TAB          &mmv MOVE_UP        &tog _TAB    &tog _TAB    &tog _TAB    &tog _TAB     &tog _TAB     &trans 
+// // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+// //                                       │39             │40             │41             │   42                 │43          │44          │45          │
+//                                           &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &trans        &trans
+// //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+// //                                                                                           46
+//                                                                                              &mkp LCLK 
+//                                                                                             ╰───────────────╯
+//
+// &trans  &kp F1      &kp F2      &kp F3       &kp F4     &kp F5      &mmv MOVE_UP     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
+// &trans  &trans      &mkp LCLK   &mkp MCLK    &mkp RCLK  &mkp MB4    &mmv MOVE_DOWN   &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
+// &trans  &sys_reset  &trans      &bootloader  &trans     &mkp MB5    &mmv MOVE_LEFT   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
+//                     &kp C_MUTE  &trans       &trans     &trans      &mmv MOVE_RIGHT  &trans       &trans     &trans
+//                                                                     &mkp LCLK
+//             >;
+//
+//             label = "tab";
+//             sensor-bindings = <&scroll_encoder>;
+//         };
+
     };
 };

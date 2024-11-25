@@ -1,0 +1,56 @@
+/* Copied (modified) from https://github.com/caksoylar/zmk-config */
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS, TERM, QUICKTAP) \
+  combo_##NAME { \
+    timeout-ms = <TERM>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <LAYERS>; \
+    require-prior-idle-ms = <QUICKTAP>; \
+  };
+
+/ {
+  combos {
+    compatible = "zmk,combos";
+
+    /*
+      KEY POSITIONS
+      ╭────────────────────────╮ ╭─────╮  ╭─────────────────────────╮
+      │ 0   1   2   3   4   5  │ │ 6   │  │ 7   8   9   10  11  12  │
+      │ 13  14  15  16  17  18 │ │ 19  │  │ 20  21  22  23  24  25  │
+      │ 26  27  28  29  30  31 │ │ 32  │  │ 33  34  35  36  37  38  │
+      ╰───────────╮ 39  40  41 │ │ 42  │  │ 43  44  45 ╭────────────╯
+                  ╰────────────╯ │ 46  │  ╰────────────╯
+                                 ╰─────╯ 
+    */
+
+    COMBO(enter, &kp ENTER, 10 11, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(led_layer, &tog _LED, 9 10 11, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(tmux_pre, &kp TMUX_PRE, 30 31, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(tmux_num, &tmux_num, 28 29, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    // COMBO(super_tab, &kp MEH, 1 2, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    // COMBO(super_swap_app, &to _COLEMAK_DH, 35 36, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(meh, &kp MEH, 28 29 30, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(reset_keyboard, &sys_reset, 1 27, 0, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(mouse_layer, &tog _MOUSE, 4 5, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(move_base_layer, &to _COLEMAK_DH, 35 36, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(open_app, &kp OPEN_APP, 34 35 36, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    // COMBO(vim_move_toggle, &to _COLEMAK_DH, 35 36, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    // COMBO(leader_key, &kp OPEN_APP, 2 3 4, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(toggle_sym_layer, &tog _SYM, 8 9 10, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(toggle_num_layer, &tog _NUM, 2 3 4, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(toggle_num_layer, &tog _NUM, 34 35, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(ctrl_w, &ctrl_w, 28 30, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(double_quote, &kp DQT, , -1, 2 3, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+
+    /* Bluetooth */
+    COMBO(bt_clear, &bt BT_CLR, 1 2 3 4, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(bt_sel_0, &bt BT_SEL 0, 1 13, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(bt_sel_1, &bt BT_SEL 1, 2 14, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(bt_sel_2, &bt BT_SEL 2, 3 15, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(bt_sel_3, &bt BT_SEL 3, 4 16, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(bt_sel_4, &bt BT_SEL 4, 5 17, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+
+    /* Media */
+    COMBO(play, &kp C_PP, 6 7, L1 L2 Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+  };
+};

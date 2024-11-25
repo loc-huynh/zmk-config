@@ -1,0 +1,487 @@
+// ZMK Behaviors Configuration
+&mt {
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+  require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+  require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+};
+
+&sk {
+  quick-release;
+};
+
+// mods deactivate caps-word, requires PR https://github.com/zmkfirmware/zmk/pull/1451
+// &caps_word {
+//   /delete-property/ ignore-modifiers;
+// };
+
+// From: https://github.com/urob/zmk-config/
+// num-word, requires PR https://github.com/zmkfirmware/zmk/pull/1451
+// Adds arrows and shift to smart layer for more comfortable navigation/selection moves
+&num_word {
+  continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL RSHFT LEFT RIGHT UP DOWN>;
+};
+
+&caps_word {
+  continue-list = <BSPC DEL PLUS MINUS STAR FSLH EQUAL RSHFT LEFT RIGHT UP DOWN>;
+};
+
+/ {
+  behaviors {
+
+    /omit-if-no-ref/ skq: sticky_key_quick_release {
+        compatible = "zmk,behavior-sticky-key";
+        #binding-cells = <1>;
+        bindings = <&kp>;
+        quick-release;
+      };
+
+    /*
+    Home Row Mods
+
+    - tap: &kp <PARAM_2>
+    - hold: &kp <PARAM_1>
+
+    Example: &hrml LCMD T
+    */
+    /omit-if-no-ref/ hrml: hrm_left {
+      bindings = <&kp>, <&kp>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <2>;
+    };
+    /omit-if-no-ref/ hrmr: hrm_right {
+      bindings = <&kp>, <&kp>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <2>;
+    };
+
+    /*
+    - tap: sticky shift
+    - double-tap: caps-word (shift + tap mod-morph)
+    - hold: shift
+
+    From: https://github.com/urob/zmk-config/
+    */
+    /omit-if-no-ref/ smart_shift: smart_shift {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&skq RSHFT>, <&caps_word>;
+      mods = <(MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+
+    /*
+    - tap: num-word
+    - hold: &mo layer
+
+    From: https://github.com/urob/zmk-config/
+    */
+    /omit-if-no-ref/ smart_num: smart_num {
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      bindings = <&mo>, <&num_dance>;
+      #binding-cells = <2>;
+    };
+
+    /*
+    - tap: &sl L2
+    - tap x 2: &num_word
+
+    From: https://github.com/urob/zmk-config/
+    */
+    /omit-if-no-ref/ num_dance: num_dance {
+      compatible = "zmk,behavior-tap-dance";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      bindings = <&sl L2>, <&num_word L2>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: &kp <PARAM_2>
+    - hold: &none
+
+    Example: &nh 0 K_CANCEL
+    */
+    /omit-if-no-ref/ nh: no_hold {
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      bindings = <&none>, <&kp>;
+      #binding-cells = <2>;
+    };
+
+    /*
+    - tap: sticky ctrl
+    - hold: ctrl
+    - double-tap: sticky meh (ctrl + tap mod-morph)
+    - tap + hold: meh (ctrl + hold mod-morph)
+
+    From: https://github.com/urob/zmk-config/
+    */
+    /omit-if-no-ref/ ctrl_meh: ctrl_meh {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&sk LCTRL>, <&sk MEH>;
+      mods = <(MOD_LCTL)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: backspace
+    - hold: repeat backspace
+    - shift + tap: delete
+    - shift + hold: repeat delete
+
+    From: https://zmk.dev/docs/behaviors/mod-morph#advanced-configuration
+    */
+    /omit-if-no-ref/ bkspc_del: backspace_delete {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp BACKSPACE>, <&kp DELETE>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: brightness up
+    - hold: repeat brightness up
+    - shift + tap: brightness down
+    - shift + hold: repeat brightness down
+    */
+    /omit-if-no-ref/ brightness: brightness {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_BRI_UP>, <&kp C_BRI_DN>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: next track
+    - shift + tap: prev track
+    */
+    /omit-if-no-ref/ next_prev: next_prev {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_NEXT>, <&kp C_PREV>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: volume up
+    - shift + tap: volume down
+    */
+    /omit-if-no-ref/ volume: volume {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: reset keyboard
+    - hold: enter bootloader mode
+    */
+    /omit-if-no-ref/ rst_boot: rst_boot {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = <500>;
+        flavor = "tap-preferred";
+        bindings = <&bootloader>, <&sys_reset>;
+    };
+
+    // achxi's custom behaviors
+    /omit-if-no-ref/ hlt: hold_layer_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_LAYER_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&mo>, <&kp>;
+    };
+
+    /omit-if-no-ref/ hml_ttl: hold_moment_layer_tap_toggle_layer {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_LAYER_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&mo>, <&tog>;
+    };
+
+    /omit-if-no-ref/ m_thing: hold_moment_layer_tap_macro_offmouse {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_LAYER_TAP";
+        #binding-cells = <1>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&mo>, <&off_mouse>;
+    };
+
+
+    /omit-if-no-ref/ htk: hold_tap_key {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_TAP_KEY";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&kp>, <&kp>;
+    };
+
+    /omit-if-no-ref/ hold_reset: hold_reset_key {
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <2000>;
+      bindings = <&sys_reset>, <&none>;
+      #binding-cells = <0>;
+    };
+
+    /omit-if-no-ref/ hold_boot: hold_bootloader_key {
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <2000>;
+      bindings = <&bootloader>, <&none>;
+      #binding-cells = <0>;
+    };
+
+    /omit-if-no-ref/ hmtk: hold_macro_tap_key {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_MACRO_TAP_KEY";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&ter_del_fw>, <&kp>;
+    };
+
+    /omit-if-no-ref/ hlsl: hold_layer_sticky_layer {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_LAYER_STICKY_LAYER";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&mo>, <&sl>;
+    };
+
+
+    /*
+    - tap: web navigate back
+    - shift + tap:web navigate forward 
+    */
+    /omit-if-no-ref/ web_nav: web_nav {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp BACK>, <&kp FWD>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: web tab right
+    - shift + tap: web tab left 
+    */
+    /omit-if-no-ref/ web_tab: web_tab {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp TAB_R>, <&kp TAB_L>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: comma
+    - shift + tap: underscore
+    */
+    /omit-if-no-ref/ comm_uds: comma_underscore {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp COMMA>, <&kp UNDER>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: dot
+    - shift + tap: minus
+    */
+    /omit-if-no-ref/ dot_mns: dot_minus {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp DOT>, <&kp MINUS>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: slash
+    - shift + tap: backslash
+    */
+    /omit-if-no-ref/ slh_bsl: slash_backslash {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp SLASH>, <&kp BACKSLASH>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: home
+    - shift + tap: end
+    */
+    /omit-if-no-ref/ home_end: home_end {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp HOME>, <&kp END>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: page down
+    - shift + tap: page up
+    */
+    /omit-if-no-ref/ pg_d_u: pg_d_u {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp PG_DN>, <&kp PG_UP>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: terminal word left
+    - shift + tap: terminal word right 
+    */
+    /omit-if-no-ref/ ter_word: terminal_word_jump {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp TER_L>, <&kp TER_R>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+    - tap: terminal sentence beginning
+    - shift + tap: terminal sentence end
+    */
+    /omit-if-no-ref/ ter_line: terminal_sentence_jump {
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp TER_F>, <&kp TER_E>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /omit-if-no-ref/ hrml_cy: hrm_left_copy {
+      bindings = <&kp>, <&smart_copy>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <1>;
+    };
+
+    /omit-if-no-ref/ hrml_l: hrm_left_to_layer {
+      bindings = <&kp>, <&to>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <2>;
+    };
+
+    /omit-if-no-ref/ nslt: num_sym_layer_tap {
+      compatible = "zmk,behavior-hold-tap";
+      label = "NUM_SYM_LAYER_TAP";
+      #binding-cells = <2>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <125>;
+      bindings = <&mo>, <&kp>;
+    };
+
+    /omit-if-no-ref/ slt: spacebar_layer_tap {
+      compatible = "zmk,behavior-hold-tap";
+      label = "SPACE_LAYER_TAP";
+      #binding-cells = <2>;
+      flavor = "tap-preferred";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <125>;
+      bindings = <&mo>, <&kp>;
+    };
+
+    /omit-if-no-ref/ hl_togl: hold_layer_toggle_layer {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOLD_LAYER_TO_LAYER";
+      #binding-cells = <2>;
+      flavor = "tap-preferred";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <125>;
+      bindings = <&mo>, <&tog>;
+    };
+
+    /omit-if-no-ref/ sw_web: switch_web {
+      compatible = "zmk,behavior-tri-state";
+      label = "SWITCH WEB";
+      #binding-cells = <0>;
+      bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+      ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+    };
+
+    /omit-if-no-ref/ sw_app: switch_app {
+      compatible = "zmk,behavior-tri-state";
+      label = "SWITCH APP";
+      #binding-cells = <0>;
+      bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+     ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key 
+    };
+
+    /omit-if-no-ref/ sw_web_st: switch_web_sticky {
+        compatible = "zmk,behavior-tri-state";
+        label = "SWITCH WEB STICKY";
+        #binding-cells = <0>;
+        bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+        ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
+        ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    };
+
+    /omit-if-no-ref/ sw_app_st: switch_app_sticky {
+        compatible = "zmk,behavior-tri-state";
+        label = "SWITCH APP STICKY";
+        #binding-cells = <0>;
+        bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+        ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
+        ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    };
+
+    /omit-if-no-ref/ hlo: hold_layer_only {
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "hold-preferred";
+      tapping-term-ms = <20>;
+      bindings = <&mo>, <&none>;
+      #binding-cells = <1>;
+    };
+
+    /omit-if-no-ref/ hl_tl: hold_layer_taphold_layer {
+        compatible = "zmk,behavior-tap-dance";
+        flavor = "hold-preferred";
+        tapping-term-ms = <150>;
+        bindings = <&hlo>, <&hlo>;
+        #binding-cells = <2>;
+    };
+
+  };
+};
