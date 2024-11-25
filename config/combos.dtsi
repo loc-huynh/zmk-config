@@ -40,7 +40,7 @@
     COMBO(toggle_num_layer, &tog _NUM, 2 3 4, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO(toggle_num_layer, &tog _NUM, 34 35, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO(ctrl_w, &ctrl_w, 28 30, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
-    COMBO(double_quote, &kp DQT, , -1, 2 3, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO(double_quote, &kp DQT, 2 3, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
 
     /* Bluetooth */
     COMBO(bt_clear, &bt BT_CLR, 1 2 3 4, Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
