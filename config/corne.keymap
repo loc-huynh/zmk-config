@@ -37,18 +37,18 @@
 
 #define TMUX_PRE LC(K)
 
-#define WORD_L LALT(LEFT)
-#define WORD_R LALT(RIGHT)
+#define WORD_L LA(LEFT)
+#define WORD_R LA(RIGHT)
 
-#define TER_L LALT(LEFT)
-#define TER_R LALT(RIGHT)
+#define TER_L LA(LEFT)
+#define TER_R LA(RIGHT)
 
-#define TER_F LCTRL(A)
-#define TER_E LCTRL(E) 
+#define TER_F LC(A)
+#define TER_E LC(E) 
 
-#define TER_DEL LCTRL(W) 
-#define TER_C_F LCTRL(U) 
-#define TER_C_E LCTRL(K) 
+#define TER_DEL LC(W) 
+#define TER_C_F LC(U) 
+#define TER_C_E LC(K) 
 
 #define FWD LG(RBKT)
 #define BACK LG(LBRC)
