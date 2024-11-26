@@ -234,7 +234,7 @@
     &none       &none     &none           &none           &none           &none              &mmv MOVE_LEFT      &none        &none        &none        &none         &none        &none
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &none           &hold_reset     &hold_boot         &mmv MOVE_RIGHT     &hold_boot   &hold_reset  &none 
+                                          &none           &hold_reset 0 0 &hold_boot 0 0     &mmv MOVE_RIGHT     &hold_boot 0 0 &hold_reset 0 0  &none 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK
@@ -322,7 +322,7 @@
     &trans      &kp F12     &kp F9           &kp F10       &kp F11        &kp F8            &mmv MOVE_LEFT    &kp BSPC          &kp N4        &kp N5      &kp N6       &kp KP_EQUAL    &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤ ├───────────────┤ ├─────────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │  42               │43               │44          │45          │
-                                          &hml_ttl _NAV _NUM  &hlt _HRM SPACE   &trans      &mmv MOVE_RIGHT   &hl_tl _HRM _SYM  &kp N0       &trans 
+                                          &hml_ttl _NAV _NUM  &hlt _HRM SPACE   &trans      &mmv MOVE_RIGHT   &hl_tl            &kp N0       &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯ ├───────────────┤ ╰─────────────────┴────────────┴────────────╯
 //                                                                                          46
                                                                                             &mkp LCLK 
@@ -453,7 +453,7 @@
     &trans      &none     &kp C_PP        &mkp RCLK       &mkp LCLK        &kp C_BRI_DN      &kp LEFT_ARROW      &kp C_BRI_UP &mkp LCLK     &mkp RCLK    &tog _MOUSE_REV &kp C_NEXT &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &m_thing _NAV   &mo _HRM        &kp C_PP           &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
+                                          &m_thing _NAV 0 &mo _HRM        &kp C_PP           &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &kp ENTER
@@ -539,7 +539,7 @@
     &none &htk LG(Q) CANCEL_MOD  &kp CLOSE_W  &mo _SUB_NAV    &sw_web       &sw_app          &mmv MOVE_UP        &tog _PREFIX_C_K &kp ENTER &kp TAB        &web_tab    &kp CAP_IMG   &none
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &trans  &hrml LCTRL C_UNDO &hrml LSHIFT C_CUT &hrml_cy LALT &hrml LCMD PASTE &hrml MEH SEARCH  &mmv MOVE_DOWN      &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp DWORD    &trans 
+    &trans  &hrml LCTRL C_UNDO &hrml LSHIFT C_CUT &hrml_cy LALT C_COPY &hrml LCMD PASTE &hrml MEH SEARCH  &mmv MOVE_DOWN      &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp DWORD    &trans 
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
     &trans     &code_snip &kp SW_INST &hl_togl _LED _LED &mo _VIM         &fat_right         &mmv MOVE_LEFT     &web_nav     &bkspc_del    &kp DEL_WORD  &htk F_LINE_SEL F_LINE &kp WORD_L   &trans 

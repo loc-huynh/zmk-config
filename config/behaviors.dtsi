@@ -251,7 +251,7 @@
     /omit-if-no-ref/ m_thing: hold_moment_layer_tap_macro_offmouse {
         compatible = "zmk,behavior-hold-tap";
         // label = "HOLD_LAYER_TAP";
-        #binding-cells = <1>;
+        #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
         bindings = <&mo>, <&off_mouse>;
@@ -272,7 +272,7 @@
       flavor = "balanced";
       tapping-term-ms = <2000>;
       bindings = <&sys_reset>, <&none>;
-      #binding-cells = <0>;
+      #binding-cells = <2>;
     };
 
     /omit-if-no-ref/ hold_boot: hold_bootloader_key {
@@ -280,7 +280,7 @@
       flavor = "balanced";
       tapping-term-ms = <2000>;
       bindings = <&bootloader>, <&none>;
-      #binding-cells = <0>;
+      #binding-cells = <2>;
     };
 
     /omit-if-no-ref/ hmtk: hold_macro_tap_key {
@@ -410,7 +410,7 @@
       tapping-term-ms = <TAPPING_TERM_MS>;
       quick-tap-ms = <QUICK_TAP_MS>;
       require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
-      #binding-cells = <1>;
+      #binding-cells = <2>;
     };
 
     /omit-if-no-ref/ hrml_l: hrm_left_to_layer {
@@ -494,14 +494,14 @@
       flavor = "hold-preferred";
       tapping-term-ms = <20>;
       bindings = <&mo>, <&none>;
-      #binding-cells = <1>;
+      #binding-cells = <2>;
     };
 
     /omit-if-no-ref/ hl_tl: hold_layer_taphold_layer {
         compatible = "zmk,behavior-tap-dance";
         flavor = "hold-preferred";
         tapping-term-ms = <150>;
-        bindings = <&hlo>, <&hlo>;
+        bindings = <&hlo _HRM 0>, <&hlo _SYM 0>;
         #binding-cells = <2>;
     };
 
