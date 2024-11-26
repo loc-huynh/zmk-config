@@ -628,7 +628,7 @@ ZMK_TRI_STATE(sw_app_st,
     &none       &none     &none           &trans           &none           &none            &mmv MOVE_UP        &kp NAV_U  &kp NAV_L     &kp NAV_R   &kp TAB_L       &tog(_QWERTY) &none
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &trans        &none     &none          &none           &none           &none              &mmv MOVE_DOWN    &kp PRINTSCREEN &hmtk 0 TER_DEL &ter_line   &ter_word     &kp SCROLLLOCK &trans 
+    &trans        &none     &none          &none           &none           &none              &mmv MOVE_DOWN    &kp PSCRN &hmtk 0 TER_DEL &ter_line     &ter_word     &kp SLCK     &trans 
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
     &trans       &none     &none           &none           &none           &thin_right        &mmv MOVE_LEFT      &kp FWD      &htk TER_C_F TER_C_E &del_fw &htk L_LINE_SEL L_LINE &kp WORD_R &trans 
