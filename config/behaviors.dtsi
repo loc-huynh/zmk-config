@@ -455,40 +455,48 @@
       bindings = <&mo>, <&tog>;
     };
 
-    /omit-if-no-ref/ sw_web: switch_web {
-      compatible = "zmk,behavior-tri-state";
-      // label = "SWITCH WEB";
-      #binding-cells = <0>;
-      bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
-      ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
-    };
-
-    /omit-if-no-ref/ sw_app: switch_app {
-      compatible = "zmk,behavior-tri-state";
-      // label = "SWITCH APP";
-      #binding-cells = <0>;
-      bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-     ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key 
-    };
-
-    /omit-if-no-ref/ sw_web_st: switch_web_sticky {
-        compatible = "zmk,behavior-tri-state";
-        // label = "SWITCH WEB STICKY";
-        #binding-cells = <0>;
-        bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
-        ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
-        ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
-    };
-
-    /omit-if-no-ref/ sw_app_st: switch_app_sticky {
-        compatible = "zmk,behavior-tri-state";
-        // label = "SWITCH APP STICKY";
-        #binding-cells = <0>;
-        bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-        ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
-        ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
-    };
-
+    // /omit-if-no-ref/ sw_web: switch_web {
+    //   compatible = "zmk,behavior-tri-state";
+    //   // label = "SWITCH WEB";
+    //   #binding-cells = <0>;
+    //   bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+    //   ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+    // };
+    //
+    // /omit-if-no-ref/ sw_app: switch_app {
+    //   compatible = "zmk,behavior-tri-state";
+    //   // label = "SWITCH APP";
+    //   #binding-cells = <0>;
+    //   bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+    //   ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key 
+    // };
+    //
+    // /omit-if-no-ref/ alt_tab: alt_tab {
+    //   compatible = "zmk,behavior-tri-state";
+    //   // label = "ALT TAB";
+    //   #binding-cells = <0>;
+    //   bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    //   ignored-key-positions = <31 43 45>; // alt-tab itself  on _EXTEND layer, LS(TAB) on _EXTEND layer, _EXTEND layer key 
+    // };
+    //
+    // /omit-if-no-ref/ sw_web_st: switch_web_sticky {
+    //     compatible = "zmk,behavior-tri-state";
+    //     // label = "SWITCH WEB STICKY";
+    //     #binding-cells = <0>;
+    //     bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+    //     ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
+    //     ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    // };
+    //
+    // /omit-if-no-ref/ sw_app_st: switch_app_sticky {
+    //     compatible = "zmk,behavior-tri-state";
+    //     // label = "SWITCH APP STICKY";
+    //     #binding-cells = <0>;
+    //     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+    //     ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
+    //     ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    // };
+    //
     /omit-if-no-ref/ hlo: hold_layer_only {
       compatible = "zmk,behavior-hold-tap";
       flavor = "hold-preferred";
@@ -498,6 +506,7 @@
     };
 
     /omit-if-no-ref/ hl_tl: hold_layer_taphold_layer {
+
         compatible = "zmk,behavior-tap-dance";
         tapping-term-ms = <150>;
         bindings = <&hlo _HRM 0>, <&hlo _SYM 0>;

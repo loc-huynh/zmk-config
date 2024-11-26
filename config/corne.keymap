@@ -6,6 +6,8 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 
+#include "zmk-helpers/helper.h"
+
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 #define U_MS_U &mmv MOVE_UP
@@ -136,6 +138,33 @@
 
         tap-ms = <30>;
     };
+
+    ZMK_TRI_STATE(sw_web,
+       bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+    )
+
+    ZMK_TRI_STATE(sw_app,
+       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>; 
+       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+    )
+
+    ZMK_TRI_STATE(alt_tab,
+      bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+      ignored-key-positions = <31 43 45>; // alt-tab itself  on _EXTEND layer, LS(TAB) on _EXTEND layer, _EXTEND layer key 
+    )
+
+    ZMK_TRI_STATE(sw_web_st,
+       bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
+       ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    )
+
+    ZMK_TRI_STATE(sw_app_st,
+       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
+       ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+    )
 
     keymap {
         compatible = "zmk,keymap";
@@ -476,10 +505,10 @@
     &trans      &none     &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_DOWN  &msc SCRL_RIGHT    &mmv MOVE_DOWN      &msc SCRL_LEFT &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none &trans 
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
-    &trans      &none     &none           &kp CLR_TERM     &kp SW_INST    &trans             &mmv MOVE_DOWN      &trans       &kp SW_INST &kp CLR_TERM   &mo _MOUSE    &none        &trans 
+    &trans      &none     &mo _MOUSE      &kp CLR_TERM     &kp SW_INST    &alt_tab           &mmv MOVE_LEFT      &trans       &kp SW_INST &kp CLR_TERM   &none        &none        &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &kp OPEN_APP     &kp C_MUTE      &kp C_PP            &mmv MOVE_RIGHT     &trans         &smart_shift   &trans 
+                                          &kp OPEN_APP     &kp C_MUTE      &kp C_PP          &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
