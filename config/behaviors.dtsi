@@ -36,6 +36,25 @@
 / {
   behaviors {
 
+    /omit-if-no-ref/ td0: td0 {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TD0";
+        #binding-cells = <0>;
+        bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+    };
+
+    mmv {
+        acceleration-exponent = <1>;      // 1
+        time-to-max-speed-ms = <900>;    // 40
+        delay-ms = <0>;                   // 0
+    };
+
+    msc {
+        acceleration-exponent = <1>;      // 0
+        time-to-max-speed-ms = <400>;      // 500
+        delay-ms = <0>;                   // 10
+    };
+
     /omit-if-no-ref/ skq: sticky_key_quick_release {
         compatible = "zmk,behavior-sticky-key";
         #binding-cells = <1>;
