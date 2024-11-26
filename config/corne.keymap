@@ -497,7 +497,7 @@
     &trans      &none     &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_DOWN  &msc SCRL_RIGHT    &mmv MOVE_DOWN      &msc SCRL_LEFT &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none &trans 
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
-    &trans      &none     &none           &kp CLR_TERM     &kp SW_INST    &trans             &mmv MOVE_DOWN      &trans       &kp SW_INST &kp CLR_TERM   &none         &none        &trans 
+    &trans      &none     &none           &kp CLR_TERM     &kp SW_INST    &trans             &mmv MOVE_DOWN      &trans       &kp SW_INST &kp CLR_TERM   &mo _MOUSE    &none        &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
                                           &kp OPEN_APP     &kp C_MUTE      &kp C_PP            &mmv MOVE_RIGHT     &trans         &smart_shift   &trans 
