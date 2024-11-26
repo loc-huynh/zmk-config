@@ -46,7 +46,7 @@
     // COMBO(leader_key, &kp OPEN_APP, 2 3 4, -1, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO_G(toggle_sym_layer, &tog _SYM, 8 9 10, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO_G(toggle_num_layer, &tog _NUM, 2 3 4, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
-    COMBO_G(toggle_num_layer, &tog _NUM, 34 35, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
+    COMBO_G(toggle_num_layer_dup, &tog _NUM, 34 35, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO_G(ctrl_w, &ctrl_w, 28 30, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO_G(double_quote, &kp DQT, 2 3, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
 
@@ -58,7 +58,5 @@
     COMBO(bt_sel_3, &bt BT_SEL 3, 28 29, _EXTEND, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
     COMBO(bt_sel_4, &bt BT_SEL 4, 29 30, _EXTEND, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
 
-    /* Media */
-    COMBO(play, &kp C_PP, 6 7, L1 L2 Fn, COMBO_TERM_DEFAULT, COMBO_QUICK_TAP_MS)
   };
 };
