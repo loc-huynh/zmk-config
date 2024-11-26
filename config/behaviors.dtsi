@@ -499,7 +499,6 @@
 
     /omit-if-no-ref/ hl_tl: hold_layer_taphold_layer {
         compatible = "zmk,behavior-tap-dance";
-        flavor = "hold-preferred";
         tapping-term-ms = <150>;
         bindings = <&hlo _HRM 0>, <&hlo _SYM 0>;
         #binding-cells = <0>;
