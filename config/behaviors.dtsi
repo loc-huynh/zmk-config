@@ -502,7 +502,7 @@
         flavor = "hold-preferred";
         tapping-term-ms = <150>;
         bindings = <&hlo _HRM 0>, <&hlo _SYM 0>;
-        #binding-cells = <2>;
+        #binding-cells = <0>;
     };
 
   };
