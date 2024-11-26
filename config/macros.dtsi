@@ -125,7 +125,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp DOT>
+      = <&macro_tap &kp DOT>
       , <&macro_tap &kp DOT>
       , <&macro_tap &kp SLASH>
       ;
@@ -135,7 +135,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp EQUAL>
+      = <&macro_tap &kp EQUAL>
       , <&macro_tap &kp GT>
       ;
     };
@@ -144,7 +144,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp MINUS>
+      = <&macro_tap &kp MINUS>
       , <&macro_tap &kp GT>
       ;
     };
@@ -153,7 +153,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp WORD_R>
+      = <&macro_tap &kp WORD_R>
       , <&macro_tap &kp DEL_WORD>
       ;
     };
@@ -162,7 +162,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp TER_R>
+      = <&macro_tap &kp TER_R>
       , <&macro_tap &kp TER_DEL>
       ;
     };
@@ -171,7 +171,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp C_COPY>
+      = <&macro_tap &kp C_COPY>
       , <&macro_tap &to _COLEMAK_DH>
       ;
     };
@@ -180,7 +180,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &tog _MOUSE>
+      = <&macro_tap &tog _MOUSE>
       , <&macro_tap &tog _MOUSE_REV>
       ;
     };
