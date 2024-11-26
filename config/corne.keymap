@@ -69,10 +69,10 @@
 #define CAP_IMG LG(LS(N4))        // Capture portion of screen
 #define CAP_MOV LG(LS(N5))        // Capture portion of screen
 
-#define COPY LG(C)
+#define C_COPY LG(C)
 #define PASTE LG(V)
-#define CUT LG(X)
-#define UNDO LG(Z)
+#define C_CUT LG(X)
+#define C_UNDO LG(Z)
 
 #define HYPER LG(LA(LC(LSHIFT)))
 #define ZOOM_MAC LG(LA(N8))
@@ -560,7 +560,7 @@
     &none &htk LG(Q) CANCEL_MOD  &kp CLOSE_W  &mo _SUB_NAV    &sw_web       &sw_app          &mmv MOVE_UP        &tog _PREFIX_C_K &kp ENTER &kp TAB        &web_tab    &kp CAP_IMG   &none
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &trans  &hrml LCTRL UNDO &hrml LSHIFT CUT &hrml_cy LALT &hrml LCMD PASTE &hrml MEH SEARCH  &mmv MOVE_DOWN      &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp DWORD    &trans 
+    &trans  &hrml LCTRL C_UNDO &hrml LSHIFT C_CUT &hrml_cy LALT &hrml LCMD PASTE &hrml MEH SEARCH  &mmv MOVE_DOWN      &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp DWORD    &trans 
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
     &trans     &code_snip &kp SW_INST &hl_togl _LED _LED &mo _VIM         &fat_right         &mmv MOVE_LEFT     &web_nav     &bkspc_del    &kp DEL_WORD  &htk F_LINE_SEL F_LINE &kp WORD_L   &trans 

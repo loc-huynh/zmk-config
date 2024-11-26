@@ -80,10 +80,10 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      = <&macro_press &kp LC>
+      = <&macro_press &kp LCTRL>
       , <&macro_tap &kp K>
-      , <&macro_release &kp LC>
-      , <&sl _NUM>
+      , <&macro_release &kp LCTRL>
+      , <&macro_tap &sl _NUM>
       ;
     };
 
@@ -91,9 +91,9 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      = <&macro_press &kp LC>
+      = <&macro_press &kp LCTRL>
       , <&macro_tap &kp W>
-      , <&macro_release &kp LC>
+      , <&macro_release &kp LCTRL>
       ;
     };
 
@@ -111,13 +111,13 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      = <&macro_press &kp LC>
+      = <&macro_press &kp LCTRL>
       , <&macro_tap &kp W>
-      , <&macro_release &kp LC>
+      , <&macro_release &kp LCTRL>
       , <&macro_wait_time 100>
-      , <&macro_press &kp LC>
+      , <&macro_press &kp LCTRL>
       , <&macro_tap &kp R>
-      , <&macro_release &kp LC>
+      , <&macro_release &kp LCTRL>
       ;
     };
 
@@ -171,7 +171,7 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings 
-      , <&macro_tap &kp COPY>
+      , <&macro_tap &kp C_COPY>
       , <&macro_tap &to _COLEMAK_DH>
       ;
     };
