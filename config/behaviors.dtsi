@@ -38,7 +38,7 @@
 
     /omit-if-no-ref/ td0: td0 {
         compatible = "zmk,behavior-tap-dance";
-        label = "TD0";
+        // label = "TD0";
         #binding-cells = <0>;
         bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
     };
@@ -229,7 +229,7 @@
     // achxi's custom behaviors
     /omit-if-no-ref/ hlt: hold_layer_tap {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_LAYER_TAP";
+        // label = "HOLD_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -238,7 +238,7 @@
 
     /omit-if-no-ref/ hml_ttl: hold_moment_layer_tap_toggle_layer {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_LAYER_TAP";
+        // label = "HOLD_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -247,7 +247,7 @@
 
     /omit-if-no-ref/ m_thing: hold_moment_layer_tap_macro_offmouse {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_LAYER_TAP";
+        // label = "HOLD_LAYER_TAP";
         #binding-cells = <1>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -257,7 +257,7 @@
 
     /omit-if-no-ref/ htk: hold_tap_key {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_TAP_KEY";
+        // label = "HOLD_TAP_KEY";
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -282,7 +282,7 @@
 
     /omit-if-no-ref/ hmtk: hold_macro_tap_key {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_MACRO_TAP_KEY";
+        // label = "HOLD_MACRO_TAP_KEY";
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -291,7 +291,7 @@
 
     /omit-if-no-ref/ hlsl: hold_layer_sticky_layer {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOLD_LAYER_STICKY_LAYER";
+        // label = "HOLD_LAYER_STICKY_LAYER";
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <150>;
@@ -424,7 +424,7 @@
 
     /omit-if-no-ref/ nslt: num_sym_layer_tap {
       compatible = "zmk,behavior-hold-tap";
-      label = "NUM_SYM_LAYER_TAP";
+      // label = "NUM_SYM_LAYER_TAP";
       #binding-cells = <2>;
       flavor = "hold-preferred";
       tapping-term-ms = <200>;
@@ -434,7 +434,7 @@
 
     /omit-if-no-ref/ slt: spacebar_layer_tap {
       compatible = "zmk,behavior-hold-tap";
-      label = "SPACE_LAYER_TAP";
+      // label = "SPACE_LAYER_TAP";
       #binding-cells = <2>;
       flavor = "tap-preferred";
       tapping-term-ms = <200>;
@@ -444,7 +444,7 @@
 
     /omit-if-no-ref/ hl_togl: hold_layer_toggle_layer {
       compatible = "zmk,behavior-hold-tap";
-      label = "HOLD_LAYER_TO_LAYER";
+      // label = "HOLD_LAYER_TO_LAYER";
       #binding-cells = <2>;
       flavor = "tap-preferred";
       tapping-term-ms = <200>;
@@ -454,7 +454,7 @@
 
     /omit-if-no-ref/ sw_web: switch_web {
       compatible = "zmk,behavior-tri-state";
-      label = "SWITCH WEB";
+      // label = "SWITCH WEB";
       #binding-cells = <0>;
       bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
@@ -462,7 +462,7 @@
 
     /omit-if-no-ref/ sw_app: switch_app {
       compatible = "zmk,behavior-tri-state";
-      label = "SWITCH APP";
+      // label = "SWITCH APP";
       #binding-cells = <0>;
       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
      ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key 
@@ -470,7 +470,7 @@
 
     /omit-if-no-ref/ sw_web_st: switch_web_sticky {
         compatible = "zmk,behavior-tri-state";
-        label = "SWITCH WEB STICKY";
+        // label = "SWITCH WEB STICKY";
         #binding-cells = <0>;
         bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
         ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
@@ -479,7 +479,7 @@
 
     /omit-if-no-ref/ sw_app_st: switch_app_sticky {
         compatible = "zmk,behavior-tri-state";
-        label = "SWITCH APP STICKY";
+        // label = "SWITCH APP STICKY";
         #binding-cells = <0>;
         bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
         ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
