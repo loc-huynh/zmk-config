@@ -123,6 +123,33 @@
 #include "macros.dtsi"
 #include "combos.dtsi"
 
+ZMK_TRI_STATE(sw_web,
+    bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+    ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+)
+
+ZMK_TRI_STATE(sw_app,
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>; 
+    ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
+)
+
+ZMK_TRI_STATE(alt_tab,
+  bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+  ignored-key-positions = <31 43 45>; // alt-tab itself  on _EXTEND layer, LS(TAB) on _EXTEND layer, _EXTEND layer key 
+)
+
+ZMK_TRI_STATE(sw_web_st,
+    bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+    ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
+    ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+)
+
+ZMK_TRI_STATE(sw_app_st,
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+    ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
+    ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
+)
+
 / {
     rgb_encoder: rgb_encoder {
         compatible = "zmk,behavior-sensor-rotate";
@@ -138,33 +165,6 @@
 
         tap-ms = <30>;
     };
-
-    ZMK_TRI_STATE(sw_web,
-       bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
-       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
-    )
-
-    ZMK_TRI_STATE(sw_app,
-       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>; 
-       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _N_NAV/esc layer key
-    )
-
-    ZMK_TRI_STATE(alt_tab,
-      bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-      ignored-key-positions = <31 43 45>; // alt-tab itself  on _EXTEND layer, LS(TAB) on _EXTEND layer, _EXTEND layer key 
-    )
-
-    ZMK_TRI_STATE(sw_web_st,
-       bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
-       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer, _NAV/esc layer key 
-       ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
-    )
-
-    ZMK_TRI_STATE(sw_app_st,
-       bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-       ignored-key-positions = <1 43 39>; // LS(TAB) on _NAV layer, LG(Q) to exit app on _NAV layer 
-       ignored-layers = <1 2 3 4 5 6 7 8 9 10 11 12>;
-    )
 
     keymap {
         compatible = "zmk,keymap";
