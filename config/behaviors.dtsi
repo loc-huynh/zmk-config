@@ -18,6 +18,9 @@
   quick-release;
 };
 
+&soft_off {
+    hold-time-ms = <5000>;
+};
 // mods deactivate caps-word, requires PR https://github.com/zmkfirmware/zmk/pull/1451
 // &caps_word {
 //   /delete-property/ ignore-modifiers;

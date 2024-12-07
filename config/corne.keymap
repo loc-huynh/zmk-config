@@ -257,7 +257,7 @@ ZMK_TRI_STATE(sw_app_st,
     &none       &none     &none           &none           &none           &none              &mmv MOVE_UP        &none        &none        &none        &none         &none        &none
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &none       &none     &none           &none           &none           &none              &mmv MOVE_DOWN      &none        &none        &none        &none         &none        &none
+    &none       &none     &none           &none           &soft_off       &none              &mmv MOVE_DOWN      &none        &soft_off    &none        &none         &none        &none
 // ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
 // │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
     &none       &none     &none           &none           &none           &none              &mmv MOVE_LEFT      &none        &none        &none        &none         &none        &none
@@ -608,7 +608,7 @@ ZMK_TRI_STATE(sw_app_st,
 
             >;
 
-            label = "nav";
+            label = "vim";
             sensor-bindings = <&scroll_encoder>;
         };
 
