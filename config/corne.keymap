@@ -20,16 +20,16 @@
 #define _COLEMAK_DH 0
 #define _QWERTY 1
 #define _SYSTEM 2
-#define _PREFIX_C_K 3
+#define _LED 3
 #define _NUM 4
 #define _SYM 5
-#define _MOUSE 6
-#define _MOUSE_REV 7
-#define _EXTEND 8
+#define _PREFIX_C_K 6
+#define _MOUSE 7
+#define _MOUSE_REV 8
 #define _NAV 9
-#define _VIM 10
-#define _SUB_NAV 11
-#define _LED 12
+#define _EXTEND 10
+#define _VIM 11
+#define _SUB_NAV 12
 #define _HRM 13
 // #define _TAB 13
 
@@ -193,7 +193,7 @@ ZMK_TRI_STATE(sw_app_st,
     &kp LALT    &kp Z     &kp X           &kp C         &hlt _PREFIX_C_K D   &kp V            &mmv MOVE_LEFT      &kp K        &kp H        &comm_uds    &dot_mns       &slh_bsl    &kp LSHIFT 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                          &kp C_MUTE      &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB    &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
+                          &kp C_MUTE       &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB    &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
