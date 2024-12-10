@@ -14,12 +14,12 @@
 };
 
 &sk {
-  release-after-ms = <1000>;
+  release-after-ms = <5000>;
   quick-release;
 };
 
 &soft_off {
-    hold-time-ms = <5000>;
+    hold-time-ms = <3000>;
 };
 // mods deactivate caps-word, requires PR https://github.com/zmkfirmware/zmk/pull/1451
 // &caps_word {
