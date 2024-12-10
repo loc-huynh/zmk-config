@@ -470,7 +470,7 @@ ZMK_TRI_STATE(sw_app_st,
 //
 
         mouse_rev_layer {
-            display-name = "mouse rev";
+            display-name = "ms rev";
             bindings = <
 // ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
 // │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
@@ -492,65 +492,6 @@ ZMK_TRI_STATE(sw_app_st,
             >;
 
             label = "mouse rev";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        extend_layer {
-            display-name = "extend";
-            bindings = <
-// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
-// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
-    &trans      &out OUT_USB &out OUT_BLE &sw_app           &sw_web       &kp C_PREV         &mmv MOVE_UP        &kp C_NEXT   &kp ENTER    &mkp LCLK     &mkp RCLK     &none         &trans
-// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
-// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &trans      &none     &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_DOWN  &msc SCRL_RIGHT    &mmv MOVE_DOWN      &msc SCRL_LEFT &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none &trans 
-// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
-// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
-    &trans      &none     &mo _MOUSE      &kp CLR_TERM     &kp SW_INST    &alt_tab           &mmv MOVE_LEFT      &trans       &kp SW_INST &kp CLR_TERM   &none        &none        &trans 
-// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
-//                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                          &trans          &kp OPEN_APP     &kp C_MUTE      &kp C_PP          &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
-//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
-//                                                                                           46
-                                                                                             &mkp LCLK 
-//                                                                                          ╰───────────────╯
-            >;
-
-            label = "extend";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-// [_HOME_ROW_MOD] = LAYOUT_planck_grid(
-//     KC_HOME,         KC_END,  CANCEL_MOD,TAB_WEB, TAB_APP, _______, _______, KC_TAB,   SW_INST,   CLR_TERM ,  KC_PGDN, KC_PGUP,
-//     OS_CMD,          OS_ALT,   OS_SHFT, OS_CTRL, TG_KEEP_MOD,_______, _______, KC_SPC,  OS_CMD,   OS_ALT,   OS_SHFT, OS_CTRL,
-//     KC_LGUI,         KC_LOPT,  KC_LSFT, KC_LCTL, FRC_CLOSE ,    _______, _______, KC_CAPS,   KC_RCTL,   KC_RSFT,  KC_ROPT, KC_RGUI,
-//     _______,         _______,  _______, _______, _______,    _______, _______, KC_RSFT,  _______, _______, _______, _______
-// ),
-
-    // &td0     &hrml LCTRL A &hrml LSHIFT R &hrml LALT S    &hrml LCMD T    &hrml MEH G        &kp DOWN_ARROW      &hrmr MEH M  &hrmr LCMD N &hrmr LALT E &hrmr LSHIFT I &hrmr LCTRL O  achxi
-        hrm_layer {
-            display-name = "hrm";
-            bindings = <
-// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
-// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
-    &none       &home_end     &kp END     &kp CANCEL_MOD  &sw_web_st      &sw_app_st          &mmv MOVE_UP        &kp TAB      &kp SW_INST  &kp CLR_TERM &pg_d_u       &kp PG_UP     &none
-// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
-// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
-    &trans      &sk LCTRL  &sk LSHIFT      &sk LALT        &sk LCMD       &sk MEH            &mmv MOVE_DOWN      &kp SPACE    &sk LCMD     &sk LALT     &sk LSHIFT    &sk LCTRL    &trans 
-// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
-// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
-    &trans       &kp LGUI  &kp LALT        &kp LSHIFT      &kp LCTRL       &kp FRC_CLOSE      &mmv MOVE_LEFT      &kp CAPS      &kp RCTRL    &kp RSHIFT    &kp RALT     &kp RGUI    &trans 
-// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
-//                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                           &trans         &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &smart_shift    &trans
-//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
-//                                                                                           46
-                                                                                             &mkp LCLK 
-//                                                                                          ╰───────────────╯
-
-            >;
-
-            label = "hrm";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -584,6 +525,31 @@ ZMK_TRI_STATE(sw_app_st,
             >;
 
             label = "nav";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        extend_layer {
+            display-name = "extend";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &trans      &out OUT_USB &out OUT_BLE &sw_app           &sw_web       &kp C_PREV         &mmv MOVE_UP        &kp C_NEXT   &kp ENTER    &mkp LCLK     &mkp RCLK     &none         &trans
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans      &none     &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_DOWN  &msc SCRL_RIGHT    &mmv MOVE_DOWN      &msc SCRL_LEFT &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans      &none     &mo _MOUSE      &kp CLR_TERM     &kp SW_INST    &alt_tab           &mmv MOVE_LEFT      &trans       &kp SW_INST &kp CLR_TERM   &none        &none        &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                          &trans          &kp OPEN_APP     &kp C_MUTE      &kp C_PP          &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+//                                                                                          ╰───────────────╯
+            >;
+
+            label = "extend";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -644,6 +610,40 @@ ZMK_TRI_STATE(sw_app_st,
             >;
 
             label = "sub nav";
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+// [_HOME_ROW_MOD] = LAYOUT_planck_grid(
+//     KC_HOME,         KC_END,  CANCEL_MOD,TAB_WEB, TAB_APP, _______, _______, KC_TAB,   SW_INST,   CLR_TERM ,  KC_PGDN, KC_PGUP,
+//     OS_CMD,          OS_ALT,   OS_SHFT, OS_CTRL, TG_KEEP_MOD,_______, _______, KC_SPC,  OS_CMD,   OS_ALT,   OS_SHFT, OS_CTRL,
+//     KC_LGUI,         KC_LOPT,  KC_LSFT, KC_LCTL, FRC_CLOSE ,    _______, _______, KC_CAPS,   KC_RCTL,   KC_RSFT,  KC_ROPT, KC_RGUI,
+//     _______,         _______,  _______, _______, _______,    _______, _______, KC_RSFT,  _______, _______, _______, _______
+// ),
+
+    // &td0     &hrml LCTRL A &hrml LSHIFT R &hrml LALT S    &hrml LCMD T    &hrml MEH G        &kp DOWN_ARROW      &hrmr MEH M  &hrmr LCMD N &hrmr LALT E &hrmr LSHIFT I &hrmr LCTRL O  achxi
+        hrm_layer {
+            display-name = "hrm";
+            bindings = <
+// ╭───────────┬─────────┬───────────────┬───────────────┬───────────────┬───────────────╮  ╭───────────────╮   ╭────────────┬────────────┬────────────┬─────────────┬────────────┬───────────────╮
+// │0          │1        │2              │3              │4              │5              │  │6              │   │7           │8           │9           │10           │11          │12             │
+    &none       &home_end     &kp END     &kp CANCEL_MOD  &sw_web_st      &sw_app_st          &mmv MOVE_UP        &kp TAB      &kp SW_INST  &kp CLR_TERM &pg_d_u       &kp PG_UP     &none
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │13         │14       │15             │16             │17             │18             │   19                 │20          │21          │22          │23           │24          │25             │
+    &trans      &sk LCTRL  &sk LSHIFT      &sk LALT        &sk LCMD       &sk MEH            &mmv MOVE_DOWN      &kp SPACE    &sk LCMD     &sk LALT     &sk LSHIFT    &sk LCTRL    &trans 
+// ├───────────├─────────┼───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┼────────────┼───────────────┤
+// │26         │27       │28             │29             │30             │31             │   32                 │33          │34          │35          │36           │37          │38             │
+    &trans       &kp LGUI  &kp LALT        &kp LSHIFT      &kp LCTRL       &kp FRC_CLOSE      &mmv MOVE_LEFT      &kp CAPS      &kp RCTRL    &kp RSHIFT    &kp RALT     &kp RGUI    &trans 
+// ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
+//                                       │39             │40             │41             │   42                 │43          │44          │45          │
+                           &trans         &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &smart_shift    &trans
+//                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
+//                                                                                           46
+                                                                                             &mkp LCLK 
+//                                                                                          ╰───────────────╯
+
+            >;
+
+            label = "hrm";
             sensor-bindings = <&scroll_encoder>;
         };
 
