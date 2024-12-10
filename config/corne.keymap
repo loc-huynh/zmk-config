@@ -193,7 +193,7 @@ ZMK_TRI_STATE(sw_app_st,
     &kp LALT    &kp Z     &kp X           &kp C         &hlt _PREFIX_C_K D   &kp V            &mmv MOVE_LEFT      &kp K        &kp H        &comm_uds    &dot_mns       &slh_bsl    &kp LSHIFT 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB    &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
+                          &kp C_MUTE      &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB    &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -232,7 +232,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans       &kp Z     &kp X           &kp C        &hlt _PREFIX_C_K V &kp B             &mmv MOVE_LEFT      &kp N        &kp M        &comm_uds    &dot_mns       &slh_bsl    &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB     &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
+                          &kp C_MUTE      &hlt _NAV ESC   &kp SPACE       &nslt _NUM TAB     &mmv MOVE_RIGHT     &nslt _SYM ENTER &smart_shift  &hlt _EXTEND BSPC 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK
@@ -264,7 +264,7 @@ ZMK_TRI_STATE(sw_app_st,
     &none       &none     &none           &none           &none           &none              &mmv MOVE_LEFT      &none        &none        &none        &none         &none        &none
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &none           &hold_reset 0 0 &hold_boot 0 0     &mmv MOVE_RIGHT     &hold_boot 0 0 &hold_reset 0 0  &none 
+                         &trans           &none           &hold_reset 0 0 &hold_boot 0 0     &mmv MOVE_RIGHT     &hold_boot 0 0 &hold_reset 0 0  &none 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK
@@ -320,7 +320,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans        &rgb_ug RGB_SPD &rgb_ug RGB_SPI     &mmv MOVE_LEFT      &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4   &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &tog _LED       &trans          &trans             &mmv MOVE_RIGHT      &trans      &trans       &trans 
+                           &trans         &tog _LED       &trans          &trans             &mmv MOVE_RIGHT      &trans      &trans       &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK
@@ -352,7 +352,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans      &kp F12     &kp F9           &kp F10       &kp F11        &kp F8            &mmv MOVE_LEFT    &kp BSPC          &kp N4        &kp N5      &kp N6       &kp KP_EQUAL    &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤ ├───────────────┤ ├─────────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │  42               │43               │44          │45          │
-                                          &hml_ttl _NAV _NUM  &hlt _HRM SPACE   &trans      &mmv MOVE_RIGHT   &hl_tl            &kp N0       &trans 
+                           &trans         &hml_ttl _NAV _NUM  &hlt _HRM SPACE   &trans      &mmv MOVE_RIGHT   &hl_tl            &kp N0       &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯ ├───────────────┤ ╰─────────────────┴────────────┴────────────╯
 //                                                                                          46
                                                                                             &mkp LCLK 
@@ -384,7 +384,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans       &kp KP_DOT &kp SLASH      &kp STAR        &kp CARET       &kp AT           &mmv MOVE_LEFT        &kp TILDE    &kp LBKT     &kp DLLR     &kp RBKT      &kp HASH      &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &hml_ttl _NAV _SYM &hlt _HRM SPACE &mo _HRM       &mmv MOVE_RIGHT      &trans      &smart_shift   &trans 
+                          &trans          &hml_ttl _NAV _SYM &hlt _HRM SPACE &mo _HRM       &mmv MOVE_RIGHT      &trans      &smart_shift   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK
@@ -417,7 +417,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans     &tmux_p Z  &tmux_p X       &tmux_p C      &tmux_p D        &tmux_p V          &mmv MOVE_LEFT      &tmux_p K    &tmux_p H    &tmux_p COMMA &tmux_p DOT &tmux_p SLASH   &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &hml_ttl _NAV _PREFIX_C_K &trans &trans            &mmv MOVE_RIGHT     &trans       &trans       &trans 
+                         &trans           &hml_ttl _NAV _PREFIX_C_K &trans &trans            &mmv MOVE_RIGHT     &trans       &trans       &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -449,7 +449,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans    &kp C_PREV     &kp C_PP       &mkp RCLK     &mkp LCLK        &kp C_BRI_DN      &kp LEFT_ARROW      &kp C_BRI_UP  &mkp LCLK    &mkp RCLK    &tog _MOUSE_REV &none     &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &hml_ttl _NAV _MOUSE &mo _HRM    &kp C_PP          &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
+                            &trans        &hml_ttl _NAV _MOUSE &mo _HRM    &kp C_PP          &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &kp ENTER
@@ -483,7 +483,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans      &none     &kp C_PP        &mkp RCLK       &mkp LCLK        &kp C_BRI_DN      &kp LEFT_ARROW      &kp C_BRI_UP &mkp LCLK     &mkp RCLK    &tog _MOUSE_REV &kp C_NEXT &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &m_thing _NAV 0 &mo _HRM        &kp C_PP           &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
+                          &trans          &m_thing _NAV 0 &mo _HRM        &kp C_PP           &kp RIGHT_ARROW      &mkp RCLK    &mkp LCLK   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &kp ENTER
@@ -509,7 +509,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans      &none     &mo _MOUSE      &kp CLR_TERM     &kp SW_INST    &alt_tab           &mmv MOVE_LEFT      &trans       &kp SW_INST &kp CLR_TERM   &none        &none        &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &kp OPEN_APP     &kp C_MUTE      &kp C_PP          &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
+                          &trans          &kp OPEN_APP     &kp C_MUTE      &kp C_PP          &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -542,7 +542,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans       &kp LGUI  &kp LALT        &kp LSHIFT      &kp LCTRL       &kp FRC_CLOSE      &mmv MOVE_LEFT      &kp CAPS      &kp RCTRL    &kp RSHIFT    &kp RALT     &kp RGUI    &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &smart_shift    &trans
+                           &trans         &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans       &smart_shift    &trans
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -575,7 +575,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans     &code_snip &kp SW_INST &hl_togl _LED _LED &mo _VIM         &fat_right         &mmv MOVE_LEFT     &web_nav     &bkspc_del    &kp DEL_WORD  &htk F_LINE_SEL F_LINE &kp WORD_L   &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
+                          &trans          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp LS(TAB)  &smart_shift   &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -601,7 +601,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans       &none     &none           &none           &trans          &none              &mmv MOVE_LEFT      &none       &kp LC(O)    &kp LC(N6)    &kp LC(I)    &none       &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans        &vim_save    &trans 
+                           &trans         &trans          &trans          &trans             &mmv MOVE_RIGHT     &trans        &vim_save    &trans 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
@@ -635,7 +635,7 @@ ZMK_TRI_STATE(sw_app_st,
     &trans       &none     &none           &none           &none           &thin_right        &mmv MOVE_LEFT      &kp FWD      &htk TER_C_F TER_C_E &del_fw &htk L_LINE_SEL L_LINE &kp WORD_R &trans 
 // ╰───────────┴─────────┴───────────────┼───────────────┼───────────────┼───────────────┤  ├───────────────┤   ├────────────├────────────┼────────────┼─────────────┴────────────┴───────────────╯
 //                                       │39             │40             │41             │   42                 │43          │44          │45          │
-                                          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp CAP_MOV &kp CAP_FULL_IMG &kp PAUSE_BREAK 
+                          &trans          &trans          &trans          &trans             &mmv MOVE_RIGHT     &kp CAP_MOV &kp CAP_FULL_IMG &kp PAUSE_BREAK 
 //                                       ╰───────────────┴───────────────┴───────────────╯  ├───────────────┤   ╰────────────┴────────────┴────────────╯
 //                                                                                           46
                                                                                              &mkp LCLK 
